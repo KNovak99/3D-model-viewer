@@ -1,5 +1,6 @@
-import React, {useRef, useEffect, useCallback} from 'react'
+import React, {useRef, useEffect, useCallback, Suspense} from 'react'
 import {Canvas, useFrame, useThree} from '@react-three/fiber'
+import './App.css'
 import Miami from './Miami_Street_web.js';
 import { a } from '@react-spring/three';
 import Scroll from './scroll.js';
@@ -15,10 +16,12 @@ const Camera = (props) => {
 
 export default function App() {
   return (
-    <Canvas>
+    <Canvas className="canvas">
       <directionalLight intensity={0.5} />
-      <Camera position={[0, 0, 3]} />
-      <Miami />
+      <Suspense>
+        <Camera position={[0, 0, 1]} />
+        <Miami />
+      </Suspense>
     </Canvas>
   );
 }
